@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+
+
+{% block content %}
+
+<h2>Make a Google Search with AI agents.</h2>
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="text" name="search_query" placeholder="Enter your search query"><input type="text" name="search_query" placeholder="Enter your search query">
+    <!-- Double check this even works -->
+</form>
+
+{% endblock %}
