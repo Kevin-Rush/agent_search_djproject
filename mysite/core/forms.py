@@ -12,5 +12,5 @@ from .models import Prompt
 class PromptForm(forms.ModelForm):
     class Meta:
         model = Prompt
-        field = ("prompt_string", "gpt_key")
+        fields = ("prompt", "gpt_key")
 

@@ -8,4 +8,13 @@ class Home(TemplateView):
 
 
 def make_search(request):
-    return render(request, "make_search.html")
+    if request.method == "POST":
+        form = PromptForm(request.POST)
+        if form.is_valid():
+            form.save()
+            # What do I want to do after I save the form? Do I need to reroute them? I think I should do the entire search on this page.
+    else: 
+        form = PromptForm()
+    return render(request, "make_search.html", {
+        "form": form
+    })

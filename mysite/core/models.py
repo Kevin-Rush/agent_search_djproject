@@ -23,7 +23,7 @@ class Prompt(models.Model):
     def __str__(self):
         return self.prompt
     
-    def delete(self, *args, **kwargs):
-        self.gpt_key.delete()
-        self.prompt.delete()
-        super().delete(*args, **kwargs)
+    # def delete(self, *args, **kwargs):
+    #     self.gpt_key.delete()
+    #     self.prompt.delete()
+    #     super().delete(*args, **kwargs)
