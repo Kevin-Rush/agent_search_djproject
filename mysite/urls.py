@@ -9,6 +9,7 @@ from mysite.core import views
 urlpatterns = [
     path('', views.Home.as_view(), name='home'),
     path('make_search/', views.make_search, name='make_search'),
+    path('prompt_list/', views.prompt_list, name='prompt_list'),
 
     path('admin/', admin.site.urls),
 ]

@@ -2,6 +2,25 @@
  
 {% block content %}
 
-<h2>Past Searches: </h2>
+<h2>Past Searches </h2>
+
+<p> 
+    <a href="{% url 'make_search' %}" class="btn btn-primary">Start New Search</a> 
+</p>
+
+<table class="table mb-0">
+    <thead>
+        <tr>
+            <th>Prompt: </th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for prompt in prompts %}
+        <tr>
+            <td>{{ prompt.user_prompt }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
 
 {% endblock %}

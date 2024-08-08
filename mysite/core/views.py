@@ -2,12 +2,16 @@ from django.shortcuts import render, redirect
 from django.views.generic import TemplateView, ListView, CreateView
 
 from .forms import PromptForm
+from .models import Prompt
 
 class Home(TemplateView):
     template_name = 'home.html'
 
 def prompt_list(request):
-    return render(request, "prompt_list.html")
+    prompts = Prompt.objects.all()
+    return render(request, "prompt_list.html", {
+        "prompts": prompts
+    })
 
 def make_search(request):
     if request.method == "POST":

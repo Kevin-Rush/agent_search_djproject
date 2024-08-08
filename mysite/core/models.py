@@ -17,11 +17,11 @@ from django.db import models
 #         super().delete(*args, **kwargs)
 
 class Prompt(models.Model):
-    prompt = models.CharField(max_length=256)
+    user_prompt = models.CharField(max_length=256)
     gpt_key = models.CharField(max_length=56)
 
     def __str__(self):
-        return self.prompt
+        return self.user_prompt
     
     # def delete(self, *args, **kwargs):
     #     self.gpt_key.delete()
