@@ -3,14 +3,11 @@ django-crispy-forms==1.7.2
 Pillow==5.3.0
 pytz==2018.4
 
-colorama==0.4.4
-requests==2.26.0
-langchain==0.1.0
-beautifulsoup4==4.10.0
-python-dotenv==0.19.1
-json==0.9.7
-autogen==0.1.0
-selenium==4.0.0
-webdriver_manager==3.5.2
-langchain_community==0.1.0
-langchain_openai==0.1.0
+colorama
+requests
+langchain
+beautifulsoup4
+python-dotenv
+autogen
+selenium
+webdriver_manager
