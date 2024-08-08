@@ -19,7 +19,7 @@ def prompt_list(request):
 
 def make_search(request):
     if request.method == "POST":
-        form = PromptForm(request.POST)
+        form = PromptForm(request.POST, initial={'search_result': None})
         if form.is_valid():
             form.save()
             return redirect('prompt_list')
