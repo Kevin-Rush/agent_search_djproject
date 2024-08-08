@@ -3,4 +3,4 @@
 
 # Acknowledgement:
 
-This was possible thank to: https://github.com/sibtc/django-upload-example.git
+This was possible thanks to: https://github.com/sibtc/django-upload-example.git
