@@ -1,6 +1,8 @@
+"""
+Models for the core app in the Django project. Includes the Prompt model for storing user prompts and related information.
+"""
+
 from django.db import models
-
-
 
 class Prompt(models.Model):
     user_prompt = models.CharField(max_length=256)

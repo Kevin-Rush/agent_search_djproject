@@ -1,4 +1,9 @@
+"""
+URL configuration for the Django project. Includes URL patterns for the home page, search functionality, prompt list, prompt deletion, and admin site.
+"""
+
 from django.contrib import admin
+
 from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static

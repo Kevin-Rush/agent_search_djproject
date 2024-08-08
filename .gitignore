@@ -53,6 +53,10 @@ coverage.xml
 # Django stuff:
 *.log
 local_settings.py
+db.sqlite3
+#Note: Track migrations if/when this project goes beyond the demo/prototype stage
+migrations/ 
+
 
 # Flask stuff:
 instance/

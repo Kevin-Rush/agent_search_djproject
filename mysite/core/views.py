@@ -1,3 +1,7 @@
+"""
+This file contains the views for the core app in a Django project. It includes views for rendering templates, handling form submissions, and deleting prompts.
+"""
+
 from django.shortcuts import render, redirect
 from django.views.generic import TemplateView
 
