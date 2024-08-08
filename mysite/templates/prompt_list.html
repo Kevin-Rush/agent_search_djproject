@@ -11,8 +11,8 @@
 <table class="table mb-0">
     <thead>
         <tr>
-            <th>Prompt: </th>
-            <th>Delete</th>
+            <th>Prompt </th>
+            <th style="text-align: right;">Delete</th>
         </tr>
     </thead>
     <tbody>
@@ -22,7 +22,7 @@
             <td>
                 <form method="post" action="{% url 'delete_prompt' prompt.pk %}">
                     {% csrf_token %}
-                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                    <button type="submit" class="btn btn-danger btn-sm float-right">Delete</button>
                 </form>
             </td>
         </tr>
