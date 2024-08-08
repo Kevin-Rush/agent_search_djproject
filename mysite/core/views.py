@@ -25,3 +25,9 @@ def make_search(request):
     return render(request, "make_search.html", {
         "form": form
     })
+
+def delete_prompt(request, pk):
+    if request.method == "POST":
+        prompt = Prompt.objects.get(pk=pk)
+        prompt.delete()
+    return redirect('prompt_list')

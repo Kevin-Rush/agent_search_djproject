@@ -12,12 +12,19 @@
     <thead>
         <tr>
             <th>Prompt: </th>
+            <th>Delete</th>
         </tr>
     </thead>
     <tbody>
         {% for prompt in prompts %}
         <tr>
             <td>{{ prompt.user_prompt }}</td>
+            <td>
+                <form method="post" action="{% url 'delete_prompt' prompt.pk %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                </form>
+            </td>
         </tr>
         {% endfor %}
     </tbody>
