@@ -7,7 +7,7 @@ from django.views.generic import TemplateView
 
 from .forms import PromptForm
 from .models import Prompt
-from .. import run_research_agent
+# from .. import run_research_agent
 
 
 class Home(TemplateView):
