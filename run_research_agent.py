@@ -189,7 +189,7 @@ def return_reseacher_responses(chat_history):
     researcher_messages = [message['content'] for message in chat_history if message.get('name') == 'researcher']
     return researcher_messages
 
-def run_groupchat(user_proxy, researcher, research_manager, message):
+def start_groupchat(user_proxy, researcher, research_manager, message):
     # Create group chat
 
     print(f"{Fore.YELLOW}---------------------Create Groupchat---------------------{Fore.RESET}")
@@ -207,10 +207,15 @@ def run_groupchat(user_proxy, researcher, research_manager, message):
     response_researcher = return_reseacher_responses(response.chat_history)
     return response_researcher
 
+def run_search(message):
+    research_results = start_groupchat(create_user_proxy(), create_research_agent(), create_research_manager_agent(), message)
+    print(f"{Fore.GREEN}---------------------Research Results:---------------------{Fore.RESET}")
+    return research_results
+
 # Only to be called while testing from cmd
 def testing():
     message = "What is wrong with the Intel i13 and newer chips?"
-    researcu_results = run_groupchat(create_user_proxy(), create_research_agent(), create_research_manager_agent(), message)
+    researcu_results = start_groupchat(create_user_proxy(), create_research_agent(), create_research_manager_agent(), message)
 
     print(f"{Fore.GREEN}---------------------Research Results:---------------------{Fore.RESET}")
     print(researcu_results)
