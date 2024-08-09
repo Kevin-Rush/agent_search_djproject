@@ -12,3 +12,4 @@ python-dotenv==0.21.1
 autogen==1.0.16
 selenium==4.11.2
 webdriver_manager==4.0.2
+numpy==1.24.4
