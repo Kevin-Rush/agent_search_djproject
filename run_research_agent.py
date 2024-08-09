@@ -184,36 +184,33 @@ def create_research_manager_agent():
     )
     return research_manager
 
+def return_reseacher_responses(chat_history):
+    # Extract all messages from the researcher in order
+    researcher_messages = [message['content'] for message in chat_history if message.get('name') == 'researcher']
+    return researcher_messages
+
 def run_groupchat(user_proxy, researcher, research_manager, message):
     # Create group chat
 
     print(f"{Fore.YELLOW}---------------------Create Groupchat---------------------{Fore.RESET}")
 
     groupchat = autogen.GroupChat(agents=[user_proxy, researcher, research_manager], messages=[], max_round=15)
-
     group_chat_manager = autogen.GroupChatManager(groupchat=groupchat, llm_config={"config_list": CONFIG_LIST})
-
 
     # Start the chat
     print(f"{Fore.YELLOW}---------------------Initalize Groupchat---------------------{Fore.RESET}")
-
     response = user_proxy.initiate_chat(group_chat_manager, clear_history=True, message=message, silent=False)
 
     print(f"{Fore.GREEN}---------------------Search Complete---------------------{Fore.RESET}")
     # print(response)
 
     response_researcher = return_reseacher_responses(response.chat_history)
-
     return response_researcher
 
-def return_reseacher_responses(chat_history):
-    # Extract all messages from the researcher in order
-    researcher_messages = [message['content'] for message in chat_history if message.get('name') == 'researcher']
-    return researcher_messages
+# Only to be called while testing from cmd
+def testing():
+    message = "What is wrong with the Intel i13 and newer chips?"
+    researcu_results = run_groupchat(create_user_proxy(), create_research_agent(), create_research_manager_agent(), message)
 
-
-message = "What is wrong with the Intel i13 and newer chips?"
-researcu_results = run_groupchat(create_user_proxy(), create_research_agent(), create_research_manager_agent(), message)
-
-print(f"{Fore.GREEN}---------------------Research Results:---------------------{Fore.RESET}")
-print(researcu_results)
+    print(f"{Fore.GREEN}---------------------Research Results:---------------------{Fore.RESET}")
+    print(researcu_results)
