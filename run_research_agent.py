@@ -40,21 +40,6 @@ CONFIG_LIST =  [ # OpenAI API Key and model saved in config list for simplicity 
 Note to Self: Add previously searched URLS to the DB;
 - Exception: Not news sites that will have new articles but the same URL
 """
-def check_url(url):
-    # with open("maracopa_searched_urls.txt", "r") as file:
-    #     urls = file.readlines()
-    #     #add the charachter "\n" to the variable url
-    #     url = url + "\n"
-    #     print(urls)
-    #     print(url in urls)
-    #     if url in urls:
-    #         print(f"{Fore.RED}---------------------Old URL---------------------{Fore.RESET}")
-    #         return False
-    #     else:
-    #         print(f"{Fore.GREEN}---------------------New URL---------------------{Fore.RESET}")
-    #         print(url)
-    #         return True
-    return True
 
 # Function to perform a Google search using the Serper API
 def google_search(search_keyword):    
@@ -109,17 +94,11 @@ def web_scraping(objective: str, url: str):
 
     response = selinium_scrape(url)
     print(f"{Fore.YELLOW}---------------------Scrape Response---------------------{Fore.RESET}")
-    #write the response to a file
-    with open("scraped_response.txt", "a", encoding='utf-8') as f:  
-        f.write(response)
 
     if response != "":
         soup = BeautifulSoup(response, "html.parser")
         text = soup.get_text()
         text = clean_soup_text(text)
-        #add text to a file
-        with open("scraped_text.txt", "a", encoding='utf-8') as f:
-            f.write(text)
 
         if len(text) > 10000:
             output = summary(objective, text)
@@ -131,7 +110,7 @@ def web_scraping(objective: str, url: str):
         return f"HTTP request failed with status code {response}"
 
 # Uses Selenium to scrape the given URL and extract relevant data from the web page.
-def selinium_scrape(url, searched_url_file="funding_searched_urls.txt"):
+def selinium_scrape(url):
 
     # Using WebDriverManager
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
@@ -141,9 +120,6 @@ def selinium_scrape(url, searched_url_file="funding_searched_urls.txt"):
     # Check the current URL
     current_url = driver.current_url
     print(f"{Fore.GREEN}Current URL:", current_url, f"{Fore.RESET}")
-    with open(searched_url_file, "a", encoding='utf-8') as f:
-            f.write(current_url)
-            f.write("\n")
 
     page_content = driver.page_source
 
@@ -160,7 +136,8 @@ def clean_soup_text(text):
     return text
 
 # Creates and initializes research agents for conducting automated research tasks.
-def run_agents(message):
+
+def create_user_proxy():
     # Create user proxy agent
     print(f"{Fore.YELLOW}---------------------Create user proxy agent---------------------{Fore.RESET}")
     user_proxy = UserProxyAgent(name="user_proxy",
@@ -168,7 +145,10 @@ def run_agents(message):
         human_input_mode="NEVER",
         max_consecutive_auto_reply=1,
         )
+    
+    return user_proxy
 
+def create_research_agent():
     # Create researcher agent
     print(f"{Fore.YELLOW}---------------------Create researcher agent---------------------{Fore.RESET}")
     researcher = GPTAssistantAgent(
@@ -189,6 +169,9 @@ def run_agents(message):
         }
     )
 
+    return researcher
+
+def create_research_manager_agent():
     # Create research manager agent
     print(f"{Fore.YELLOW}---------------------Create research manager agent---------------------{Fore.RESET}")
     research_manager = GPTAssistantAgent(
@@ -199,7 +182,9 @@ def run_agents(message):
             "assistant_id": "asst_Qn0WmtmBn6gl9eJRursaWfrX"
         }
     )
+    return research_manager
 
+def run_groupchat(user_proxy, researcher, research_manager, message):
     # Create group chat
 
     print(f"{Fore.YELLOW}---------------------Create Groupchat---------------------{Fore.RESET}")
@@ -215,12 +200,20 @@ def run_agents(message):
     response = user_proxy.initiate_chat(group_chat_manager, clear_history=True, message=message, silent=False)
 
     print(f"{Fore.GREEN}---------------------Search Complete---------------------{Fore.RESET}")
-    print(response)
+    # print(response)
+
+    response_researcher = return_reseacher_responses(response.chat_history)
+
+    return response_researcher
+
+def return_reseacher_responses(chat_history):
+    # Extract all messages from the researcher in order
+    researcher_messages = [message['content'] for message in chat_history if message.get('name') == 'researcher']
+    return researcher_messages
 
 
-    return response
- 
-response = run_agents("What is wrong with the Intel i13 and newer chips?")
+message = "What is wrong with the Intel i13 and newer chips?"
+researcu_results = run_groupchat(create_user_proxy(), create_research_agent(), create_research_manager_agent(), message)
 
-print(f"{Fore.GREEN}---------------------Returned Response (Last Message):---------------------{Fore.RESET}")
-print(response)
+print(f"{Fore.GREEN}---------------------Research Results:---------------------{Fore.RESET}")
+print(researcu_results)
