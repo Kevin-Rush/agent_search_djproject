@@ -193,7 +193,9 @@ def start_groupchat(user_proxy, researcher, research_manager, message):
 
     print(f"{Fore.YELLOW}---------------------Create Groupchat---------------------{Fore.RESET}")
 
-    groupchat = autogen.GroupChat(agents=[user_proxy, researcher, research_manager], messages=[], max_round=15)
+    # groupchat = autogen.GroupChat(agents=[user_proxy, researcher, research_manager], messages=[], max_round=15)
+    groupchat = autogen.GroupChat(agents=[user_proxy, researcher], messages=[], max_round=15)
+
     group_chat_manager = autogen.GroupChatManager(groupchat=groupchat, llm_config={"config_list": CONFIG_LIST})
 
     # Start the chat
@@ -209,12 +211,15 @@ def start_groupchat(user_proxy, researcher, research_manager, message):
 def run_search(message):
     research_results = start_groupchat(create_user_proxy(), create_research_agent(), create_research_manager_agent(), message)
     print(f"{Fore.GREEN}---------------------Research Results:---------------------{Fore.RESET}")
-    return research_results
+    return research_results[-1]
 
 # Only to be called while testing from cmd
-def testing():
-    message = "What is wrong with the Intel i13 and newer chips?"
-    researcu_results = start_groupchat(create_user_proxy(), create_research_agent(), create_research_manager_agent(), message)
+# print(f"{Fore.YELLOW}---------------------Testing---------------------{Fore.RESET}")
+# message = "What is wrong with the Intel i13 and newer chips?"
+# research_results = run_search(message)
+# # research_results = start_groupchat(create_user_proxy(), create_research_agent(), create_research_manager_agent(), message)
 
-    print(f"{Fore.GREEN}---------------------Research Results:---------------------{Fore.RESET}")
-    print(researcu_results)
+# print(f"{Fore.GREEN}---------------------Research Results:---------------------{Fore.RESET}")
+# print(type(research_results))
+# print(research_results)
+

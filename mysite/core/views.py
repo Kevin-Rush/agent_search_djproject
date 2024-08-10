@@ -19,14 +19,22 @@ def prompt_list(request):
         "prompts": prompts
     })
 
+def show_result(request):
+    prompt = Prompt.objects.last()
+    return render(request, "show_result.html", {
+        "prompt": prompt
+    })
+
 def make_search(request):
     if request.method == "POST":
-        print(request.POST)
-        form = PromptForm(request.POST, initial={'search_result': run_search(request.POST['user_prompt'])})
+        form = PromptForm(request.POST)
         if form.is_valid():
-            form.save()
-            # return render('prompt_list')
-            # What do I want to do after I save the form? Do I need to reroute them? I think I should do the entire search on this page.
+            print("Form is valid")
+            search_result = run_search(form.cleaned_data['user_prompt'])
+            prompt = form.save(commit=False)
+            prompt.search_result = search_result
+            prompt.save()
+            return redirect('show_result')
     else: 
         form = PromptForm()
     return render(request, "make_search.html", {

@@ -16,9 +16,9 @@ class PromptForm(forms.ModelForm):
             'search_result': 'Search Result',
         }
     
-    def __init__(self, *args, **kwargs):
-        super(PromptForm, self).__init__(*args, **kwargs)
-        self.fields['search_result'].initial = ''
+    # def __init__(self, *args, **kwargs):
+    #     super(PromptForm, self).__init__(*args, **kwargs)
+    #     self.fields['search_result'].initial = ''
 
     
 
