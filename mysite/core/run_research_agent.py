@@ -165,7 +165,6 @@ def create_research_agent():
         function_map={
             "web_scraping": web_scraping,
             "google_search": google_search,
-            "check_url": check_url
         }
     )
 
