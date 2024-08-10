@@ -7,7 +7,7 @@ from django.views.generic import TemplateView
 
 from .forms import PromptForm
 from .models import Prompt
-# from .. import run_research_agent
+from .run_research_agent import run_search
 
 
 class Home(TemplateView):
@@ -21,10 +21,11 @@ def prompt_list(request):
 
 def make_search(request):
     if request.method == "POST":
-        form = PromptForm(request.POST, initial={'search_result': None})
+        print(request.POST)
+        form = PromptForm(request.POST, initial={'search_result': run_search(request.POST['user_prompt'])})
         if form.is_valid():
             form.save()
-            return redirect('prompt_list')
+            # return render('prompt_list')
             # What do I want to do after I save the form? Do I need to reroute them? I think I should do the entire search on this page.
     else: 
         form = PromptForm()
