@@ -16,7 +16,9 @@ class Home(TemplateView):
     template_name = 'home.html'
 
 def prompt_list(request):
-    prompts = Prompt.objects.all()
+    # prompts = Prompt.objects.all()
+    prompts = Prompt.objects.all().order_by('-created_at')
+    
     return render(request, "prompt_list.html", {
         "prompts": prompts
     })
@@ -33,9 +35,7 @@ def make_search(request):
         if form.is_valid():
             print("Form is valid")
             results_markdown = run_search(form.cleaned_data['user_prompt'])
-            print("Results markdown: ", results_markdown)
             results_html = markdown.markdown(results_markdown)
-            print("Results HTML: ", results_html)
             prompt = form.save(commit=False)
             prompt.search_result = results_html
             prompt.save()
