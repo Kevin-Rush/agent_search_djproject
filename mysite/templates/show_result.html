@@ -5,9 +5,11 @@
 
 <h2>Search Results</h2>
 
-<p>User Prompt: {{ prompt.user_prompt }}</p>
-<p>Search Result: {{ prompt.search_result }}</p>
-
+<div class="search-result">
+    <h5>User Prompt:</h5><p> {{ prompt.user_prompt }}</p>
+    <h5>Search Result:</h5>
+    {{ prompt.search_result|safe }}
+</div>
 <p> 
     <a href="{% url 'make_search' %}" class="btn btn-primary">Start New Search</a> 
 </p>

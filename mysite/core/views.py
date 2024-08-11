@@ -5,6 +5,8 @@ This file contains the views for the core app in a Django project. It includes v
 from django.shortcuts import render, redirect
 from django.views.generic import TemplateView
 
+import markdown
+
 from .forms import PromptForm
 from .models import Prompt
 from .run_research_agent import run_search
@@ -30,9 +32,12 @@ def make_search(request):
         form = PromptForm(request.POST)
         if form.is_valid():
             print("Form is valid")
-            search_result = run_search(form.cleaned_data['user_prompt'])
+            results_markdown = run_search(form.cleaned_data['user_prompt'])
+            print("Results markdown: ", results_markdown)
+            results_html = markdown.markdown(results_markdown)
+            print("Results HTML: ", results_html)
             prompt = form.save(commit=False)
-            prompt.search_result = search_result
+            prompt.search_result = results_html
             prompt.save()
             return redirect('show_result')
     else: 
