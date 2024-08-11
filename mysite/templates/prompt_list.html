@@ -13,14 +13,17 @@
 <table class="table mb-0">
     <thead>
         <tr>
-            <th>Prompt </th>
+            <th class="fixed-width-sm">Prompt </th>
+            <th class="fixed-width-lg">Result </th>
             <th style="text-align: right;">Delete</th>
         </tr>
     </thead>
     <tbody>
         {% for prompt in prompts %}
         <tr>
-            <td>{{ prompt.user_prompt }}</td>
+            <!-- <td>{{ prompt.user_prompt|truncatewords:10 }}</td> -->
+            <td class="fixed-width-sm">{{ prompt.user_prompt }}</td>
+            <td class="fixed-width-lg">{{ prompt.search_result|striptags|truncatewords:10 }}</td>
             <td>
                 <form method="post" action="{% url 'delete_prompt' prompt.pk %}">
                     {% csrf_token %}
