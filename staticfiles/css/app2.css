@@ -1,0 +1,14 @@
+body {
+  background-color: #F5F5DC;
+}
+
+.fixed-width-sm {
+  width: 150px; 
+}
+
+.fixed-width-lg {
+  width: 600px;
+  overflow: hidden; /* Hide any overflowing text */
+  text-overflow: ellipsis; /* Add ellipsis (...) to truncated text */
+}
+

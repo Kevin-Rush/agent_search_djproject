@@ -193,8 +193,8 @@ def start_groupchat(user_proxy, researcher, research_manager, message):
 
     print(f"{Fore.YELLOW}---------------------Create Groupchat---------------------{Fore.RESET}")
 
-    # groupchat = autogen.GroupChat(agents=[user_proxy, researcher, research_manager], messages=[], max_round=15)
-    groupchat = autogen.GroupChat(agents=[user_proxy, researcher], messages=[], max_round=15)
+    groupchat = autogen.GroupChat(agents=[user_proxy, researcher, research_manager], messages=[], max_round=15)
+    # groupchat = autogen.GroupChat(agents=[user_proxy, researcher], messages=[], max_round=15)
 
     group_chat_manager = autogen.GroupChatManager(groupchat=groupchat, llm_config={"config_list": CONFIG_LIST})
 
