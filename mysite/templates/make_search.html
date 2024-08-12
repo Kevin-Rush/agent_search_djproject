@@ -7,6 +7,10 @@
 
 <h2>Search the Web with AI Agents.</h2>
 
+<div id="loading-spinner">
+    <div></div>
+</div>
+
 <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
     <div class="form-group">
@@ -19,5 +23,17 @@
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.querySelector('form');
+        const loadingSpinner = document.getElementById('loading-spinner');
+
+        form.addEventListener('submit', function() {
+            loadingSpinner.style.display = 'block'; // Show the spinner
+        });
+    });
+</script>
+
 
 {% endblock %}
