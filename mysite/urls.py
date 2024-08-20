@@ -14,6 +14,8 @@ from mysite.core import views
 urlpatterns = [
     path('', views.Home.as_view(), name='home'),
     path('search_landing/', views.search_landing, name='search_landing'),
+    path('contact_info/', views.contact_info, name='contact_info'),
+
     path('make_search/', views.make_search, name='make_search'),
     path('prompt_list/', views.prompt_list, name='prompt_list'),
     path('prompt_list/<int:pk>/', views.delete_prompt, name='delete_prompt'),

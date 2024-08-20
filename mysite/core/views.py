@@ -24,6 +24,9 @@ class Home(TemplateView):
 def search_landing(request):    
     return render(request, "search_landing.html")
 
+def contact_info(request):    
+    return render(request, "contact_info.html")
+
 def prompt_list(request):
     # prompts = Prompt.objects.all()
     prompts = Prompt.objects.all().order_by('-created_at')
