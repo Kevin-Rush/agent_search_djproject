@@ -12,9 +12,18 @@ class Prompt(models.Model):
 
     def __str__(self):
         return self.user_prompt
+
+class Document(models.Model):
+    DOC_TYPES = [
+        ('pptx', 'PowerPoint'),
+    ]
     
-    
-    # def delete(self, *args, **kwargs):
-    #     self.gpt_key.delete()
-    #     self.prompt.delete()
-    #     super().delete(*args, **kwargs)
+    user_prompt = models.CharField(max_length=256)
+    doc_type = models.CharField(max_length=50, choices=DOC_TYPES)
+    search_result = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.doc_type.capitalize()} created on {self.created_at.strftime('%Y-%m-%d')}"
+
+

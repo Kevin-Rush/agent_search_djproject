@@ -4,6 +4,7 @@ This file defines a Django form called PromptForm, which is used to create a for
 from django import forms
 
 from .models import Prompt
+from .models import Document
 
 class PromptForm(forms.ModelForm):
     class Meta:
@@ -15,11 +16,18 @@ class PromptForm(forms.ModelForm):
             'gpt_key': 'GPT Key',
             'search_result': 'Search Result',
         }
-    
-    # def __init__(self, *args, **kwargs):
-    #     super(PromptForm, self).__init__(*args, **kwargs)
-    #     self.fields['search_result'].initial = ''
 
-    
-
-
+class DocumentForm(forms.ModelForm):
+    class Meta:
+        model = Document
+        fields = ['user_prompt', 'doc_type']
+        
+        labels = {
+            'user_prompt': 'User Prompt',
+            'doc_type': 'Document Type',
+        }
+        
+        widgets = {
+            'user_prompt': forms.TextInput(attrs={'class': 'form-control'}),
+            'doc_type': forms.Select(attrs={'class': 'form-control'}),
+        }
