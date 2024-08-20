@@ -17,10 +17,28 @@
       <img src="/static/images/KevinRush_Headshot.png" alt="Your Image" style="width: 100%; height: auto;">
     </div>
   </div>
-  
-  <br><br>
-  <div style="text-align: center; clear: both;">
-    <a href="/make_search" class="btn btn-primary btn-lg">Start Your Search!</a>
+
+  <!-- Project Tiles -->
+  <a href="{% url 'search_landing' %}" style="text-decoration: none; color: inherit;">
+    <div style="display: flex; justify-content: space-around; margin-top: 40px;">
+      <!-- Project 1 -->
+      <div class="project-tile" style="width: 30%; padding: 20px; background-color: #e8eaeb; border-radius: 10px; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); text-align: center;">
+        <h3>Agent Based Search</h3>
+        <p>Use AI Agents to search the internet and return summarized results to your queries!</p>
+      </div>
+    </div>
+  </a>
+
+    <!-- Place holder code for additional projects
+    <div class="project-tile" style="width: 30%; padding: 20px; background-color: #f8f9fa; border-radius: 10px; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); text-align: center;">
+      <h3>Project 2</h3>
+      <p>A brief description of Project 2. Click to learn more!</p>
+    </div>
+
+    <div class="project-tile" style="width: 30%; padding: 20px; background-color: #f8f9fa; border-radius: 10px; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); text-align: center;">
+      <h3>Project 3</h3>
+      <p>A brief description of Project 3. Click to learn more!</p>
+    </div> -->
   </div>
 
 {% endblock %}
