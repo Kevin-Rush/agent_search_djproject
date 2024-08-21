@@ -84,3 +84,76 @@ img {
   margin-left: 15px; 
   margin-bottom: 10px;
 }
+
+/* Button Styles */
+.btn-primary {
+  background: linear-gradient(45deg, #4A90E2, #007bff); /* Gradient background */
+  border: none;
+  border-radius: 5px; /* Rounded corners */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  transition: transform 0.2s, box-shadow 0.2s, background 0.2s; /* Smooth transitions */
+}
+
+.btn-primary:hover {
+  background: linear-gradient(45deg, #007bff, #4A90E2); /* Reversed gradient on hover */
+  transform: scale(1.05); /* Slightly grow the button on hover */
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2); /* Increase shadow on hover */
+}
+
+/* Project Tile Button Styles */
+/* Container for Project Tiles */
+.project-tiles-container {
+  display: flex;
+  justify-content: space-between; /* Adds space between the buttons */
+  flex-wrap: wrap; /* Allows wrapping if the screen is too small */
+  gap: 20px; /* Optional: Adds consistent spacing between tiles */
+  margin-top: 40px;
+}
+
+/* Container for Project Tiles */
+.project-tiles-container {
+  display: flex;
+  justify-content: space-between; 
+  flex-wrap: nowrap; 
+  gap: 20px; 
+  margin-top: 40px;
+}
+
+/* Project Tile Button Styles */
+.project-tile {
+  flex: 1 1 calc(33.333% - 20px);
+  /* width: calc(33.333% - 5px);  */
+  padding: 20px;
+  background-color: #e8eaeb;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 200px; 
+}
+
+.project-tile:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.project-tile h3 .project-tile p {
+  margin: 0;
+}
+
+
+/* Image Pop-Out Effect */
+img.profile-image {
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+}
+
+img.profile-image:hover {
+  transform: scale(1.05); /* Slightly increase size on hover */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Add a more pronounced shadow on hover */
+}

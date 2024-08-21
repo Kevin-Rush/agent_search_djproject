@@ -22,26 +22,31 @@
   </div>
 
   <!-- Project Tiles -->
-  <a href="{% url 'search_landing' %}" style="text-decoration: none; color: inherit;">
-    <div style="display: flex; justify-content: space-around; margin-top: 40px;">
-      <!-- Project 1 -->
-      <div class="project-tile" style="width: 30%; padding: 20px; background-color: #e8eaeb; border-radius: 10px; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); text-align: center;">
-        <h3>Agent Based Search</h3>
-        <p>Use AI Agents to search the internet and return summarized results to your queries!</p>
-      </div>
-    </div>
-  </a>
+  <div class="project-tiles-container">
+    <a href="{% url 'search_landing' %}" style="text-decoration: none; color: inherit;">
+        <button class="project-tile">
+            <h3>Agent Based Search</h3>
+            <p>Use AI Agents to search the internet and return summarized results to your queries!</p>
+        </button>
+    </a>
+    <a href="{% url 'search_landing' %}" style="text-decoration: none; color: inherit;">
+        <button class="project-tile">
+            <h3>Project 2</h3>
+            <p>Brief description of Project 2.</p>
+        </button>
+    </a>
+    <a href="{% url 'search_landing' %}" style="text-decoration: none; color: inherit;">
+        <button class="project-tile">
+            <h3>Project 3</h3>
+            <p>Brief description of Project 3.</p>
+        </button>
+    </a>
+</div>
 
-  <!-- Place holder code for additional projects
-  <div class="project-tile" style="width: 30%; padding: 20px; background-color: #f8f9fa; border-radius: 10px; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); text-align: center;">
-    <h3>Project 2</h3>
-    <p>A brief description of Project 2. Click to learn more!</p>
-  </div>
 
-  <div class="project-tile" style="width: 30%; padding: 20px; background-color: #f8f9fa; border-radius: 10px; box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); text-align: center;">
-    <h3>Project 3</h3>
-    <p>A brief description of Project 3. Click to learn more!</p>
-  </div> -->
+
+
+
 </div>
 
 {% endblock %}
