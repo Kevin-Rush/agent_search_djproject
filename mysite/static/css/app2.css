@@ -75,3 +75,12 @@ body {
 .navbar .dropdown-toggle {
   cursor: pointer;
 }
+
+img {
+  border-radius: 10px; /* Adjust the value as needed */
+  float: right; 
+  width: 200px; 
+  height: auto; 
+  margin-left: 15px; 
+  margin-bottom: 10px;
+}
