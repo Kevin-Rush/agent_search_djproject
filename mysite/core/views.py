@@ -21,22 +21,22 @@ from .run_research_agent import run_search
 class Home(TemplateView):
     template_name = 'home.html'
 
-def search_landing(request):    
-    return render(request, "search_landing.html")
+#all admin views
 
 def contact_info(request):    
     return render(request, "contact_info.html")
 
+#all the views for the search functionality
+
+def search_landing(request):    
+    return render(request, "search_landing.html")
+
 def prompt_list(request):
-    # prompts = Prompt.objects.all()
     prompts = Prompt.objects.all().order_by('-created_at')
     
     return render(request, "prompt_list.html", {
         "prompts": prompts
     })
-
-def gen_biz_docs(request):
-    return render(request, "gen_biz_docs.html")
 
 def show_result(request, prompt_id):
     prompt = get_object_or_404(Prompt, id=prompt_id)
@@ -68,6 +68,11 @@ def delete_prompt(request, pk):
         prompt.delete()
     return redirect('prompt_list')
 
+#all the views for the document creation
+
+def gen_biz_docs(request):
+    return render(request, "gen_biz_docs.html")
+
 def create_document(request):
     if request.method == "POST":
         form = DocumentForm(request.POST)
@@ -87,3 +92,8 @@ def create_document(request):
         form = DocumentForm()
 
     return render(request, "create_document.html", {"form": form})
+
+#all the views for the ppxt support
+
+def ppxt_support(request):
+    return render(request, "ppxt_support.html")

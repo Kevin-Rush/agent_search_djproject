@@ -23,8 +23,7 @@ urlpatterns = [
 
     path('gen_biz_docs/', views.gen_biz_docs, name='gen_biz_docs'),
 
-
-
+    path('ppxt_support/', views.ppxt_support, name='ppxt_support'),
 
     path('admin/', admin.site.urls),
 ]
