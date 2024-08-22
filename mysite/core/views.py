@@ -1,4 +1,8 @@
 """
+im testing the git iOS app for coding from my phone
+"""
+
+"""
 This file contains the views for the core app in a Django project. It includes views for rendering templates, handling form submissions, and deleting prompts.
 """
 
