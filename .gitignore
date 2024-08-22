@@ -56,6 +56,8 @@ local_settings.py
 db.sqlite3
 #Note: Track migrations if/when this project goes beyond the demo/prototype stage
 migrations/ 
+# to hide secret key in settings.py
+settings.py 
 
 
 # Flask stuff:
