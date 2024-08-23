@@ -1,14 +1,39 @@
 {% extends "base.html" %}
  
+{% load crispy_forms_tags %}
+
 {% block content %}
 
-<h2>Comming Soon!</h2>
+<h2>Generate Business Documents</h2>
+<h4>Currently ONLY generating business analysis</h4>
 
-<p>If you would like to submit a business document you would like to have generated, please feel free to reach out to me via email or LinkedIn: 
-    <ul>
-        <li><a href="mailto:kevinrush.net@gmail.com">kevinrush.net@gmail.com</a></li>
-        <li><a href="https://www.linkedin.com/kevin-Rush">My LinkedIn</a></li>
-    </ul>
-</p>
+<div id="loading-spinner">
+    <div></div>
+</div>
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="form-group">
+        <label>User Prompt:</label>
+        {{ form.user_prompt }}
+    </div>
+    <div class="form-group">
+        <label>GPT Key:</label>
+        {{ form.gpt_key }}
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.querySelector('form');
+        const loadingSpinner = document.getElementById('loading-spinner');
+
+        form.addEventListener('submit', function() {
+            loadingSpinner.style.display = 'block'; // Show the spinner
+        });
+    });
+</script>
+
 
 {% endblock %}
