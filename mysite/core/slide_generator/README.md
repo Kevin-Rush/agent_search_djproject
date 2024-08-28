@@ -1,32 +1,66 @@
-# Information flow:
+# Business Document Generation
 
 ## User Input:
 
-Ask for all API keys required:
-- OpenAI
-- Scarper (or FireCrawl)
+Ask for all config information required:
+- OpenAI API Key
+- Model Type (Note can give cost expectations per model)
+- Serper (or FireCrawl ... TBD) API Key
 
 n fields to build the user prompt:
-- Document type
+- Document type (business development, business analysis, marketing, etc.)
+-- Note the actual document will be ppxt by default, other file types will be added in the future
 - Audience
 - Purpose
 - Additional information
 - File name
 
 Display the user prompt to the user for validation
-- If the user is satisfied with the prompt, proceed to subsections
+- If the user is satisfied with the prompt, proceed to sections
 - If not, ask for the user to edit prompt directly
 
-1. User prompt comes in that gives information about the type of file to be generated.
+## Section Generation
 
-Breaking down the prompt:
-- Is the document type iden
-- Is it vague and requires more information?
+**Gen 1:** Based on the user prompt, propose sections to be generated
 
-Need to extract:
-1. Document type (e.g. business development, marketing, business analysis, etc.)
-2. Additional information about the document (e.g. target audience, purpose, etc.)
+### Processing 
+Display all sections in an editable text field for the user to remove, add, or edit the sections as necessary
 
-Need to generate (i.e., decide):
-1. File name (e.g. business_dev_context.ppptx)
-2. What the sub sections for this document will be (e.g. Introduction, Market Analysis, Competitor Analysis, Conclusion etc.)
+Create a JSON file with the following structure:
+
+{
+    "document": {
+        "metadata": {
+            "type": "",
+            "audience": "",
+            "purpose": "",
+            "file_name": ""
+        },
+        "user_prompt": "",
+        "sections": [
+            "section1",
+            "section2",
+            "section3",
+        ]
+    }
+}
+
+Once the sections are approved, the next phase is content generation. My strategy for this will be to generate an entire body of text filling in the information needed per section. It will be saved in the following JSON.
+
+{
+    "content": {
+        "section1": {
+            "title": "",
+            "content": "",
+        },
+        "section2": {
+            "title": "",
+            "content": "",
+            "notes": "",
+        },
+        "section3": {
+            "title": "",
+            "content": "",
+        }
+    }
+}
