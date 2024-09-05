@@ -6,7 +6,7 @@ from langchain import PromptTemplate
 from langchain.chains.summarize import load_summarize_chain
 from bs4 import BeautifulSoup 
 from langchain.chat_models import ChatOpenAI
-from dotenv import load_dotenv
+from dotenv import load_dotenv, find_dotenv
 import json
 # from autogen import config_list_from_json
 from autogen.agentchat.contrib.gpt_assistant_agent import GPTAssistantAgent
@@ -22,11 +22,17 @@ from webdriver_manager.chrome import ChromeDriverManager
 
 print(f"{Fore.YELLOW}---------------------Loading Environment Varaibles---------------------{Fore.RESET}")
 
-load_dotenv()
+load_dotenv(verbose=True)
+dotenv_path = find_dotenv()
+print(f"{Fore.GREEN}Using .env file at: {dotenv_path}{Fore.RESET}")
+
 os.environ['AUTOGEN_USE_DOCKER'] = '0'
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY") # OpenAI API Key saved in local var for global use
-SERP_API_KEY = os.getenv("SERP_API_KEY") # OpenAI API Key saved in local var for global use
+SERPER_API_KEY = os.getenv("SERPER_API_KEY") # OpenAI API Key saved in local var for global use
 GPT_MODEL = os.getenv("GPT_MODEL")
+print(OPENAI_API_KEY)
+print(SERPER_API_KEY)
+print(GPT_MODEL)
 CONFIG_LIST =  [ # OpenAI API Key and model saved in config list for simplicity with agents
             {
                 "model": GPT_MODEL,
@@ -50,7 +56,7 @@ def google_search(search_keyword):
     })
 
     headers = {
-        'X-API-KEY': SERP_API_KEY,
+        'X-API-KEY': SERPER_API_KEY,
         'Content-Type': 'application/json'
     }
 
@@ -214,12 +220,12 @@ def run_search(message):
     return research_results[-1]
 
 # Only to be called while testing from cmd
-# print(f"{Fore.YELLOW}---------------------Testing---------------------{Fore.RESET}")
-# message = "What is wrong with the Intel i13 and newer chips?"
-# research_results = run_search(message)
-# # research_results = start_groupchat(create_user_proxy(), create_research_agent(), create_research_manager_agent(), message)
+print(f"{Fore.YELLOW}---------------------Testing---------------------{Fore.RESET}")
+message = "What is wrong with the Intel i13 and newer chips?"
+research_results = run_search(message)
+# research_results = start_groupchat(create_user_proxy(), create_research_agent(), create_research_manager_agent(), message)
 
-# print(f"{Fore.GREEN}---------------------Research Results:---------------------{Fore.RESET}")
-# print(type(research_results))
-# print(research_results)
+print(f"{Fore.GREEN}---------------------Research Results:---------------------{Fore.RESET}")
+print(type(research_results))
+print(research_results)
 
