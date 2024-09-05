@@ -1,10 +1,12 @@
 import os
 
 import markdown
+from colorama import Fore
+from dotenv import load_dotenv
+
 # import script_converter
 # import slide_deck_generator
 # import slide_image_gen
-from dotenv import load_dotenv
 
 from .run_research_agent import run_search
 
@@ -55,6 +57,18 @@ Display the user prompt to the user for validation
 """
 
 key = OPENAI_API_KEY
+
+print(f"{Fore.YELLOW}ATTENTION:{key}{Fore.RESET}")
+print(f"""You are about to generate a slide deck based on the information you provide to the following questions. \n\n
+      In a single phrase, what type of document are you creating? \n
+      Who is the audience for this document? \n
+      What are you trying to achieve with this document? \n
+      Any additional information about the document or the subject matter would like to include? \n
+      What would you like to name the file? \n
+      \n\n
+
+      """)
+
 model = os.getenv("GPT_MODEL")
 doc_type = input("What type of document are you creating? ")
 audience = input("Who is the audience for this document? ")
