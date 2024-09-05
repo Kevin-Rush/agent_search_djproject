@@ -15,4 +15,19 @@ def run_chat_completion(messages, model=GPT_MODEL):
     chat_completion = client.chat.completions.create(
         messages=messages,
         model=model,
+        response_format={"type": "json_object"}
     )
+
+    return chat_completion
+
+def get_prompt_usage(chat_completion):
+    return chat_completion.usage.prompt_tokens
+
+def get_completion_usage(chat_completion):
+    return chat_completion.usage.completion_tokens
+
+def get_total_usage(chat_completion):
+    return chat_completion.usage.total_tokens
+
+def get_response(chat_completion):
+    return chat_completion.choices[0].message.content
