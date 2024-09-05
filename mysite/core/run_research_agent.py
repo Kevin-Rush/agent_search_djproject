@@ -29,7 +29,7 @@ print(f"{Fore.GREEN}Using .env file at: {dotenv_path}{Fore.RESET}")
 os.environ['AUTOGEN_USE_DOCKER'] = '0'
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY") # OpenAI API Key saved in local var for global use
 SERPER_API_KEY = os.getenv("SERPER_API_KEY") # OpenAI API Key saved in local var for global use
-GPT_MODEL = os.getenv("GPT_MODEL")
+GPT_MODEL = os.getenv("GPT_3.5")
 print(OPENAI_API_KEY)
 print(SERPER_API_KEY)
 print(GPT_MODEL)
@@ -219,13 +219,13 @@ def run_search(message):
     print(f"{Fore.GREEN}---------------------Research Results:---------------------{Fore.RESET}")
     return research_results[-1]
 
-# Only to be called while testing from cmd
-print(f"{Fore.YELLOW}---------------------Testing---------------------{Fore.RESET}")
-message = "What is wrong with the Intel i13 and newer chips?"
-research_results = run_search(message)
-# research_results = start_groupchat(create_user_proxy(), create_research_agent(), create_research_manager_agent(), message)
+# # Only to be called while testing from cmd
+# print(f"{Fore.YELLOW}---------------------Testing---------------------{Fore.RESET}")
+# message = "What is wrong with the Intel i13 and newer chips?"
+# research_results = run_search(message)
+# # research_results = start_groupchat(create_user_proxy(), create_research_agent(), create_research_manager_agent(), message)
 
-print(f"{Fore.GREEN}---------------------Research Results:---------------------{Fore.RESET}")
-print(type(research_results))
-print(research_results)
+# print(f"{Fore.GREEN}---------------------Research Results:---------------------{Fore.RESET}")
+# print(type(research_results))
+# print(research_results)
 
